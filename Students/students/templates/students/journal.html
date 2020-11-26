@@ -1,0 +1,55 @@
+{% extends "students/base.html" %}
+
+{% load static from static %}
+
+{% block meta_title %}Студенти{% endblock meta_title %}
+
+{% block title %}База студентів{%  endblock title %}
+
+{% block content %}
+
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <td colspan="33"><a href="#">&larr; </a>{{ time.0.month }} {{ time.1.year }}<a href="#"> &rarr;</a></td>
+        </tr>
+        <tr>
+            <th>№</th>
+            <th>Студент</th>
+            {% for day in journal %}
+                <th>{{ day.day_number }}<br></th>
+            {% endfor %}
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <a href="{% url 'students_edit' student.id %}">
+                        {{ student.last_name }} {{ student.first_name}}</a>
+                </td>
+
+                {% for visiting in journal %}
+                <td><input type="checkbox" id="{{ visiting.day_number }}" name="visiting" {{ visiting.check }}></td>
+                {% endfor %}
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <nav>
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </nav>
+{% endblock content %}

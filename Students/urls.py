@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from Students.students.views import students_list, students_add, students_edit, students_delete, groups_list, groups_add, groups_edit, groups_delete
+from Students.students.views import students_list, students_add, students_edit, students_delete, groups_list, groups_add, groups_edit, groups_delete, journal
 
 urlpatterns = [
     # Students urls
@@ -29,6 +29,9 @@ urlpatterns = [
     url(r'^groups/add/$', groups_add, name="groups_add"),
     url(r'^groups/(?P<gid>\d+)/edit/$', groups_edit, name="groups_edit"),
     url(r'^groups/(?P<gid>\d+)/delete$', groups_delete, name="groups_delete"),
+
+    # journal
+    url(r'^journal/$', journal, name="journal"),
 
     url(r'^admin/', admin.site.urls)
 ]
