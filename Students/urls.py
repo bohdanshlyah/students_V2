@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from Students.students.views import students_list, students_add, students_edit, students_delete, groups_list, groups_add, groups_edit, groups_delete, journal
+from Students.students.views.students import students_list, students_add, students_edit, students_delete
+from Students.students.views.groups import groups_list, groups_add, groups_edit, groups_delete
+from Students.students.views.journal import journal
 
 urlpatterns = [
     # Students urls
@@ -32,6 +34,9 @@ urlpatterns = [
 
     # journal
     url(r'^journal/$', journal, name="journal"),
+
+    # media
+    url(r'^media/$', students_list, name="home"),
 
     url(r'^admin/', admin.site.urls)
 ]
